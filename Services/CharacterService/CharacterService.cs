@@ -38,6 +38,24 @@ namespace dotnet_rpn.Services.CharacterService
             return serviceResponse;
         }
 
+        public async Task<ServiceResponse<List<GetCharaterDto>>> DeleteCharacter(int id)
+        {
+            ServiceResponse<List<GetCharaterDto>> serviceResponse = new ServiceResponse<List<GetCharaterDto>>();
+            try
+            {
+                Character character = characters.First(c => c.Id == id);
+                characters.Remove(character);
+            
+                serviceResponse.Data = characters.Select(c => _mapper.Map<GetCharaterDto>(c)).ToList();
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+            return serviceResponse;
+        }
+
         public async Task<ServiceResponse<List<GetCharaterDto>>> GetAllCharater()
         {
             var serviceResponse = new ServiceResponse<List<GetCharaterDto>>();
@@ -56,18 +74,11 @@ namespace dotnet_rpn.Services.CharacterService
         public async Task<ServiceResponse<List<GetCharaterDto>>> UpdateCharacter(UpdateCharaterDto updateCharaterDto)
         {
             ServiceResponse<List<GetCharaterDto>> serviceResponse = new ServiceResponse<List<GetCharaterDto>>();
-            
             try
             {
                 Character character = characters.Where(c => c.Id == updateCharaterDto.Id).FirstOrDefault();
-                character.Id = updateCharaterDto.Id;
-                character.Name = updateCharaterDto.Name;
-                character.HitPoints = updateCharaterDto.HitPoints;
-                character.Strength = updateCharaterDto.Strength;
-                character.Defence = updateCharaterDto.Defence;
-                character.Inteligence = updateCharaterDto.Defence;
-                character.Class = updateCharaterDto.Class;
-
+                _mapper.Map(updateCharaterDto, character);
+            
                 serviceResponse.Data = characters.Select(c => _mapper.Map<GetCharaterDto>(c)).ToList();
             }
             catch (Exception ex)

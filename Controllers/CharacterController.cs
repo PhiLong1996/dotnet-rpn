@@ -39,7 +39,23 @@ namespace dotnet_rpn.Controllers
         [HttpPut]
         public async Task<ActionResult<ServiceResponse<List<GetCharaterDto>>>> AddCharacter(UpdateCharaterDto character)
         {
-            return Ok(await CharacterService.UpdateCharacter(character));
+            var serviceResponse = await CharacterService.UpdateCharacter(character);
+            if(serviceResponse.Data == null)
+            {
+                return NotFound(serviceResponse);
+            }
+            return Ok(serviceResponse);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ServiceResponse<List<GetCharaterDto>>>> DeleteCharacter(int id)
+        {
+            var serviceResponse = await CharacterService.DeleteCharacter(id);
+            if(serviceResponse.Data == null)
+            {
+                return NotFound(serviceResponse);
+            }
+            return Ok(serviceResponse);
         }
 
     }

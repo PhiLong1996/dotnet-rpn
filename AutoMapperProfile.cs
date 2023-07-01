@@ -13,6 +13,7 @@ namespace dotnet_rpn
         {
             CreateMap<Character, GetCharaterDto>();
             CreateMap<AddCharacterDto, Character>();
+            CreateMap<UpdateCharaterDto, Character>();
         }
     }
 }
