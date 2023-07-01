@@ -11,6 +11,7 @@ namespace dotnet_rpn.Services.CharacterService
         Task<ServiceResponse<List<GetCharaterDto>>> GetAllCharater();
         Task<ServiceResponse<GetCharaterDto>> GetCharacterById(int id);
         Task<ServiceResponse<List<GetCharaterDto>>> AddCharacter(AddCharacterDto newCharactor);
+        Task<ServiceResponse<List<GetCharaterDto>>> UpdateCharacter(UpdateCharaterDto updateCharaterDto);
 
     }
 }

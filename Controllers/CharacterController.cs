@@ -36,5 +36,11 @@ namespace dotnet_rpn.Controllers
             return Ok(await CharacterService.AddCharacter(character));
         }
 
+        [HttpPut]
+        public async Task<ActionResult<ServiceResponse<List<GetCharaterDto>>>> AddCharacter(UpdateCharaterDto character)
+        {
+            return Ok(await CharacterService.UpdateCharacter(character));
+        }
+
     }
 }
