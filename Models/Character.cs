@@ -14,5 +14,6 @@ namespace dotnet_rpn.Models
         public int Defence {get; set; } = 10;
         public int Inteligence {get; set;} = 10;
         public RgpClass Class {get; set;} = RgpClass.Knight;
+        public User? Users {get; set;}
     }
 }

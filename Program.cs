@@ -1,5 +1,6 @@
 global using dotnet_rpn.Models;
 using dotnet_rpn.Data;
+using dotnet_rpn.Services.AuthService;
 using dotnet_rpn.Services.CharacterService;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddScoped<IChracterService, CharacterService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
 
